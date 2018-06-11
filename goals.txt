@@ -1,0 +1,4 @@
+Create a parser or something that automatically will take the XML report files, and output the metrics in a nice manner for the Weekly Team Meetings.
+
+Don't forget to .gitignore sensitive data!
+Set that up immediately.
