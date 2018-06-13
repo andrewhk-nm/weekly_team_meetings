@@ -18,6 +18,7 @@
 
 import xml.etree.ElementTree as etree
 import sys # for argv
+from nm import per_week
 
 def get_root(path_and_filename):
     """ Given the path and filename of an xml doc, return the tree.
@@ -148,12 +149,12 @@ the "CB Monthly Activity and Ratios.xml" XML file. ''')
     maarr = root.find(xmlns + 'BusinessActivity2')
     
     # Get the lives goal
-    lives_goal = maarr.get(dict_of_fields['Placed Lives Goal Data'])
-    lives_placed = maarr.get(dict_of_fields['Placed Lives Total Data'])
-    nc_goal = maarr.get(dict_of_fields['Placed NC Goal Data'])
-    nc_placed = maarr.get(dict_of_fields['Placed NC Total Data'])
-    prem_goal = maarr.get(dict_of_fields['Placed Annual Premium Goal Data'])
-    prem_placed = maarr.get(dict_of_fields['Placed Annual Premium Total Data'])
+    lives_goal = float(maarr.get(dict_of_fields['Placed Lives Goal Data']))
+    lives_placed = float(maarr.get(dict_of_fields['Placed Lives Total Data']))
+    nc_goal = float(maarr.get(dict_of_fields['Placed NC Goal Data']))
+    nc_placed = float(maarr.get(dict_of_fields['Placed NC Total Data']))
+    prem_goal = float(maarr.get(dict_of_fields['Placed Annual Premium Goal Data']))
+    prem_placed = float(maarr.get(dict_of_fields['Placed Annual Premium Total Data']))
     
     # print the data I extracted
     print(lives_goal)
@@ -163,6 +164,14 @@ the "CB Monthly Activity and Ratios.xml" XML file. ''')
     print(prem_goal)
     print(prem_placed)
     
+    # calculate the lives, nc, and prem needed per week.
+    lives_pw = per_week(lives_goal, lives_placed)
+    nc_pw = per_week(nc_goal, nc_placed)
+    prem_pw = per_week(prem_goal, prem_placed)
+    
+    print(lives_pw)
+    print(nc_pw)
+    print(prem_pw)
     
 
     # Don't automatically exit when finished.
