@@ -19,12 +19,13 @@
 import xml.etree.ElementTree as etree
 import sys # for argv
 
-def get_tree(path_and_filename):
+def get_root(path_and_filename):
     """ Given the path and filename of an xml doc, return the tree.
     """
     tree = etree.parse(path_and_filename)
+    root = tree.getroot()
     
-    return tree
+    return root
 
 if __name__ == '__main__':
     # Probably grab the file name from the arg.
@@ -46,10 +47,14 @@ the "CB Monthly Activity and Ratios.xml" XML file. ''')
 
     # Parse the xml
     # Get the etree object
-    tree = get_tree(path_and_filename)
+    root = get_root(path_and_filename)
+    # Get the xml namespace from the first tag. Include the braces.
+    xmlns = '{' + root.tag.split('}')[0].strip('{') + '}'
+    print('root={}'.format(root))
 
     # CB Monthly Activites and Ratios XML Structure
     # Are these text box name### fields consistent between reports?
+	#	Based on 6/4 & 6/12, they are consistent.
     # <BusinessActivity2
     #   Textbox172=[Submitted Lives Data]
     #   Textbox173=[Submitted Annual Premium Data]
@@ -74,6 +79,9 @@ the "CB Monthly Activity and Ratios.xml" XML file. ''')
     #   Textbox51=[Placed NC Data, Annualized]
     #   Textbox53=[Placed Annual Prem Data, Annualized]
     #   >
+	
+    textbox_test = root.find(xmlns + 'BusinessActivity2').get('Textbox172')
+    print('textbox_test attrib={}'.format(textbox_test))
 
     # Don't automatically exit when finished.
     input('Press <ENTER> to exit')
