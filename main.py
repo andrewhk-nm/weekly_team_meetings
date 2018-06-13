@@ -28,7 +28,7 @@ def get_root(path_and_filename):
     return root
     
 def get_dict_of_fields():
-    """ Return a dictionary of the poorly named Textbox fields below with a more descriptive name.
+    """ Return a dictionary of the poorly named Textbox attributes below with a more descriptive name.
     #   Textbox172=[Submitted Lives Data]
     #   Textbox173=[Submitted Annual Premium Data]
     #   Textbox174=[Placed Lives Goal Data]
@@ -131,10 +131,39 @@ the "CB Monthly Activity and Ratios.xml" XML file. ''')
     #   >
 	
     # Create a dictionary of the Textbox fields as shown above.
-    get_dict_of_fields()
+    dict_of_fields = get_dict_of_fields()
     
-    textbox_test = root.find(xmlns + 'BusinessActivity2').get('Textbox172')
+    textbox_test = root.find(xmlns + 'BusinessActivity2').get(dict_of_fields['Placed Annual Premium Goal Data'])
     print('textbox_test attrib={}'.format(textbox_test))
+    
+    # What data do I use each week?
+    # lives_goal
+    # lives_placed
+    # nc_goal
+    # nc_placed
+    # prem_goal
+    # prem_placed
+    
+    # Monthly Activity & Ratio Report (maarr) info that are needed for my weekly reports
+    maarr = root.find(xmlns + 'BusinessActivity2')
+    
+    # Get the lives goal
+    lives_goal = maarr.get(dict_of_fields['Placed Lives Goal Data'])
+    lives_placed = maarr.get(dict_of_fields['Placed Lives Total Data'])
+    nc_goal = maarr.get(dict_of_fields['Placed NC Goal Data'])
+    nc_placed = maarr.get(dict_of_fields['Placed NC Total Data'])
+    prem_goal = maarr.get(dict_of_fields['Placed Annual Premium Goal Data'])
+    prem_placed = maarr.get(dict_of_fields['Placed Annual Premium Total Data'])
+    
+    # print the data I extracted
+    print(lives_goal)
+    print(lives_placed)
+    print(nc_goal)
+    print(nc_placed)
+    print(prem_goal)
+    print(prem_placed)
+    
+    
 
     # Don't automatically exit when finished.
     input('Press <ENTER> to exit')
