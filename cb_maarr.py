@@ -33,14 +33,10 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     #           Prem: $5770 / week
     #       Compare to last week.
 
-    def __init__(self):
-        # Open the file
-        path_and_filename = _get_xml_file()
+    #lives_per_week
+    #new_clients_per_week
+    #premium_per_week   
     
-        # DEBUG print the file name and path that was selected.
-        print(path_and_filename)
-    
-
     def _get_xml_file(self):
         """ If an xml file was passed to the command line, use it.
         Otherwise prompt the user for one.
@@ -53,7 +49,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         try:
             path_and_filename = args[1]
         except(IndexError):
-            path_and_filename = _prompt_for_xml_file()
+            path_and_filename = self._prompt_for_xml_file()
         
         return path_and_filename
         
@@ -136,7 +132,17 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
                 'Placed Annual Prem Data, Annualized': 'Textbox53',
                 }
 
-
+    def __init__(self):
+        # Initialize the exposed attributes/variables
+        self.lives_per_week = None
+        self.new_clients_per_week = None
+        self.premium_per_week = None
+        
+        # Open the file
+        path_and_filename = self._get_xml_file()
+    
+        # DEBUG print the file name and path that was selected.
+        print(path_and_filename)
                 
 if __name__ == "__main__":
     # create a NmCbMonthlyActivitesAndRatiosReportParser object
