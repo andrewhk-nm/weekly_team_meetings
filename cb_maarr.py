@@ -1,6 +1,15 @@
 """ CB Monthly Activities and Ratios Report Parser
 """
 
+# I think this might be able to be wrapped in a class...
+# class NmCbMonthlyActivitesAndRatiosReportParser
+#     expose
+#       new(filename or prompt for one)
+#       output
+#           lives_per_week
+#           new_clients_per_week
+#           premium_per_week    
+
 ## CB Monthly Activities and Ratios
 #   Default filename:
 #       'CB Monthly Activity and Ratios.xml'
@@ -121,5 +130,7 @@ if __name__ == "__main__":
     # Open the file
     path_and_filename = get_xml_file()
     
-    # DEBUG print
+    # DEBUG print the file name and path that was selected.
     print(path_and_filename)
+    
+    
