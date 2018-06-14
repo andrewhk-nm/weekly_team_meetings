@@ -119,3 +119,7 @@ def get_dict_of_fields():
             
 if __name__ == "__main__":
     # Open the file
+    path_and_filename = get_xml_file()
+    
+    # DEBUG print
+    print(path_and_filename)
