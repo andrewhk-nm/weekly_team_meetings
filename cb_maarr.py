@@ -19,7 +19,46 @@
 import xml.etree.ElementTree as etree
 import sys # for argv
 from nm import per_week
+import tkinter as tk
+from tkinter import filedialog
 
+def get_xml_file():
+    """ If an xml file was passed to the command line, use it.
+    Otherwise prompt the user for one.
+    """
+    
+    # Grab the args
+    args = sys.argv
+    
+    # If no args are passed, ask for the file path and name.
+    try:
+        path_and_filename = args[1]
+    except(IndexError):
+        path_and_filename = prompt_for_xml_file()
+    
+    return path_and_filename
+    
+def prompt_for_xml_file():
+    """ Prompt the user for the input file if none was passed.
+    Return a string with the path + filename
+    """
+    
+    # Use tkinter instead of an input
+    #input('''Please enter the path and filename for the "CB Monthly Activity and Ratios.xml" XML file. ''')
+
+    # Create a tkinter object
+    root = tk.Tk()
+    # Withdraw the root window so it doesn't interfere
+    root.withdraw()
+    
+    # TODO: Only look for xml files by default.
+    file_path_name = filedialog.askopenfilename(initialdir='/', 
+                                                title='Select XML File to parse',
+                                                filetypes=(('xml files', '*.xml'), 
+                                                           ('All Files', '*.*')),
+                                                )
+    return file_path_name
+    
 def get_root(path_and_filename):
     """ Given the path and filename of an xml doc, return the tree.
     """
@@ -77,3 +116,6 @@ def get_dict_of_fields():
             'Placed NC Data, Annualized': 'Textbox51',
             'Placed Annual Prem Data, Annualized': 'Textbox53',
             }
+            
+if __name__ == "__main__":
+    # Open the file
