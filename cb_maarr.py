@@ -76,26 +76,26 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         # Open the file
         path_and_filename = self._get_xml_file()
     
-        # DEBUG print the file name and path that was selected.
-        print(path_and_filename)
+        # # DEBUG print the file name and path that was selected.
+        # print(path_and_filename)
         
         # Parse the xml
         # Get the etree object
         root = self._get_root(path_and_filename)
-        # DEBUG Print root tree
-        print('root={}'.format(root))
+        # # DEBUG Print root tree
+        # print('root={}'.format(root))
         
         # Get the xml namespace from vthe first tag. Include the braces.
         xmlns = root.tag.split('}')[0] + '}'
-        # DEBUG print xmlns
-        print('xmlns={}'.format(xmlns))
+        # # DEBUG print xmlns
+        # print('xmlns={}'.format(xmlns))
 
         ## Create a dictionary of the Textbox fields with common names.
         #dict_of_fields = self._get_dict_of_fields()
         
-        # DEBUG Print a single attribute as a test to make sure it grabs the right thing
-        textbox_test = root.find(xmlns + 'BusinessActivity2').get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data'))
-        print('textbox_test attrib={}'.format(textbox_test))
+        # # DEBUG Print a single attribute as a test to make sure it grabs the right thing
+        # textbox_test = root.find(xmlns + 'BusinessActivity2').get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data'))
+        # print('textbox_test attrib={}'.format(textbox_test))
         
         # What data do I use each week?
         # lives_goal
@@ -116,23 +116,23 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         prem_goal = float(maarr.get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data')))
         prem_placed = float(maarr.get(self._get_fieldname_from_dict('Placed Annual Premium Total Data')))
         
-        # print the data I extracted
-        print(lives_goal)
-        print(lives_placed)
-        print(nc_goal)
-        print(nc_placed)
-        print(prem_goal)
-        print(prem_placed)
+        # # print the data I extracted
+        # print(lives_goal)
+        # print(lives_placed)
+        # print(nc_goal)
+        # print(nc_placed)
+        # print(prem_goal)
+        # print(prem_placed)
         
         # calculate the lives, nc, and prem needed per week.
         lives_pw = per_week(lives_goal, lives_placed)
         nc_pw = per_week(nc_goal, nc_placed)
         prem_pw = per_week(prem_goal, prem_placed)
         
-        # DEBUG print the results
-        print('lives_pw={}'.format(lives_pw))
-        print('nc_pw={}'.format(nc_pw))
-        print('prem_pw={}'.format(prem_pw))
+        # # DEBUG print the results
+        # print('lives_pw={}'.format(lives_pw))
+        # print('nc_pw={}'.format(nc_pw))
+        # print('prem_pw={}'.format(prem_pw))
         
         # Set the results to the publically available vars
         self.lives_per_week = lives_pw
@@ -241,4 +241,8 @@ if __name__ == "__main__":
     # create a NmCbMonthlyActivitesAndRatiosReportParser object
     NmCbMaarr = NmCbMonthlyActivitesAndRatiosReportParser()
     
+    # DEBUG print the results
+    print('NmCbMaarr.lives_per_week={}'.format(NmCbMaarr.lives_per_week))
+    print('NmCbMaarr.new_clients_per_week={}'.format(NmCbMaarr.new_clients_per_week))
+    print('NmCbMaarr.premium_per_week={}'.format(NmCbMaarr.premium_per_week))
     
