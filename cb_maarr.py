@@ -62,9 +62,10 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     #   >
     
     
-    #lives_per_week
-    #new_clients_per_week
-    #premium_per_week   
+    # Publicly accessable class variables that hold the results
+    lives_per_week = None
+    new_clients_per_week = None
+    premium_per_week = None
     
     def __init__(self):
         # Initialize the exposed attributes/variables
@@ -133,6 +134,10 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         print('nc_pw={}'.format(nc_pw))
         print('prem_pw={}'.format(prem_pw))
         
+        # Set the results to the publically available vars
+        self.lives_per_week = lives_pw
+        self.new_clients_per_week = nc_pw
+        self.premium_per_week = prem_pw
         
     
     def _get_xml_file(self):
