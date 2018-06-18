@@ -37,6 +37,27 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     #new_clients_per_week
     #premium_per_week   
     
+    def __init__(self):
+        # Initialize the exposed attributes/variables
+        self.lives_per_week = None
+        self.new_clients_per_week = None
+        self.premium_per_week = None
+        
+        # Open the file
+        path_and_filename = self._get_xml_file()
+    
+        # DEBUG print the file name and path that was selected.
+        print(path_and_filename)
+        
+        # Parse the xml
+        # Get the etree object
+        root = self._get_root(path_and_filename)
+        
+        # Get the xml namespace from the first tag. Include the braces.
+        xmlns = '{' + root.tag.split('}')[0] + '}'
+        print('root={}'.format(root))
+
+    
     def _get_xml_file(self):
         """ If an xml file was passed to the command line, use it.
         Otherwise prompt the user for one.
@@ -132,17 +153,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
                 'Placed Annual Prem Data, Annualized': 'Textbox53',
                 }
 
-    def __init__(self):
-        # Initialize the exposed attributes/variables
-        self.lives_per_week = None
-        self.new_clients_per_week = None
-        self.premium_per_week = None
-        
-        # Open the file
-        path_and_filename = self._get_xml_file()
-    
-        # DEBUG print the file name and path that was selected.
-        print(path_and_filename)
+
                 
 if __name__ == "__main__":
     # create a NmCbMonthlyActivitesAndRatiosReportParser object
