@@ -131,7 +131,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         # DEBUG print the results
         print('lives_pw={}'.format(lives_pw))
         print('nc_pw={}'.format(nc_pw))
-        print('prem_pw={}.format(prem_pw))
+        print('prem_pw={}'.format(prem_pw))
         
         
     
