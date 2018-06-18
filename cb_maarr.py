@@ -95,6 +95,45 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         # DEBUG Print a single attribute as a test to make sure it grabs the right thing
         textbox_test = root.find(xmlns + 'BusinessActivity2').get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data'))
         print('textbox_test attrib={}'.format(textbox_test))
+        
+        # What data do I use each week?
+        # lives_goal
+        # lives_placed
+        # nc_goal
+        # nc_placed
+        # prem_goal
+        # prem_placed
+        
+        # Monthly Activity & Ratio Report (maarr) info that are needed for my weekly reports
+        maarr = root.find(xmlns + 'BusinessActivity2')
+            
+        # Get the lives goal
+        lives_goal = float(maarr.get(self._get_fieldname_from_dict('Placed Lives Goal Data')))
+        lives_placed = float(maarr.get(self._get_fieldname_from_dict('Placed Lives Total Data')))
+        nc_goal = float(maarr.get(self._get_fieldname_from_dict('Placed NC Goal Data')))
+        nc_placed = float(maarr.get(self._get_fieldname_from_dict('Placed NC Total Data')))
+        prem_goal = float(maarr.get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data')))
+        prem_placed = float(maarr.get(self._get_fieldname_from_dict('Placed Annual Premium Total Data')))
+        
+        # print the data I extracted
+        print(lives_goal)
+        print(lives_placed)
+        print(nc_goal)
+        print(nc_placed)
+        print(prem_goal)
+        print(prem_placed)
+        
+        # calculate the lives, nc, and prem needed per week.
+        lives_pw = per_week(lives_goal, lives_placed)
+        nc_pw = per_week(nc_goal, nc_placed)
+        prem_pw = per_week(prem_goal, prem_placed)
+        
+        # DEBUG print the results
+        print('lives_pw={}'.format(lives_pw))
+        print('nc_pw={}'.format(nc_pw))
+        print('prem_pw={}.format(prem_pw))
+        
+        
     
     def _get_xml_file(self):
         """ If an xml file was passed to the command line, use it.
