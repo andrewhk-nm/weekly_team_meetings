@@ -33,6 +33,35 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     #           Prem: $5770 / week
     #       Compare to last week.
 
+    # CB Monthly Activites and Ratios XML Structure
+    # Are these text box name### fields consistent between reports?
+    #    Based on 6/4 & 6/12, they are consistent.
+    # <BusinessActivity2
+    #   Textbox172=[Submitted Lives Data]
+    #   Textbox173=[Submitted Annual Premium Data]
+    #   Textbox174=[Placed Lives Goal Data]
+    #   Textbox175=[Placed NC Goal Data]
+    #   Textbox176=[Placed Annual Premium Goal Data]
+    #   Textbox57=["Total" Label]
+    #   Textbox128=[Submitted Lives Total Data]
+    #   Textbox130=[Submitted Annual Premium Total Data]
+    #   Textbox143=[Placed Lives Total Data]
+    #   Textbox136=[Placed NC Total Data]
+    #   Textbox141=[Placed Annual Premium Total Data]
+    #   Textbox38=["Avg/Mth" Label]
+    #   Textbox30=[Submitted "Avg/Mth" Lives Data]
+    #   Textbox31=[Submitted "Avg/Mth" Annual Prem Data]
+    #   Textbox32=[Placed "Avg/Mth" Lives Data]
+    #   Textbox34=[Placed "Avg/Mth" NC Data]
+    #   Textbox36=[Placed "Avg/Mth" Annual Prem Data]
+    #   Textbox47=[Submitted Lives Data, Annualized]
+    #   Textbox48=[Submitted Annual Prem Data, Annualized]
+    #   Textbox50=[Placed Lives Data, Annualized]
+    #   Textbox51=[Placed NC Data, Annualized]
+    #   Textbox53=[Placed Annual Prem Data, Annualized]
+    #   >
+    
+    
     #lives_per_week
     #new_clients_per_week
     #premium_per_week   
@@ -52,11 +81,20 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         # Parse the xml
         # Get the etree object
         root = self._get_root(path_and_filename)
-        
-        # Get the xml namespace from the first tag. Include the braces.
-        xmlns = '{' + root.tag.split('}')[0] + '}'
+        # DEBUG Print root tree
         print('root={}'.format(root))
+        
+        # Get the xml namespace from vthe first tag. Include the braces.
+        xmlns = root.tag.split('}')[0] + '}'
+        # DEBUG print xmlns
+        print('xmlns={}'.format(xmlns))
 
+        ## Create a dictionary of the Textbox fields with common names.
+        #dict_of_fields = self._get_dict_of_fields()
+        
+        # DEBUG Print a single attribute as a test to make sure it grabs the right thing
+        textbox_test = root.find(xmlns + 'BusinessActivity2').get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data'))
+        print('textbox_test attrib={}'.format(textbox_test))
     
     def _get_xml_file(self):
         """ If an xml file was passed to the command line, use it.
@@ -103,7 +141,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         
         return root
         
-    def _get_dict_of_fields(self):
+    def _get_fieldname_from_dict(self, field):
         """ Return a dictionary of the poorly named Textbox attributes below with a more descriptive name.
         #   Textbox172=[Submitted Lives Data]
         #   Textbox173=[Submitted Annual Premium Data]
@@ -151,7 +189,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
                 'Placed Lives Data, Annualized': 'Textbox50',
                 'Placed NC Data, Annualized': 'Textbox51',
                 'Placed Annual Prem Data, Annualized': 'Textbox53',
-                }
+                }[field]
 
 
                 
