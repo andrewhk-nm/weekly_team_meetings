@@ -169,9 +169,9 @@ the "CB Monthly Activity and Ratios.xml" XML file. ''')
     nc_pw = per_week(nc_goal, nc_placed)
     prem_pw = per_week(prem_goal, prem_placed)
     
-    print(lives_pw)
-    print(nc_pw)
-    print(prem_pw)
+    print('lives_pw={}'.format(lives_pw))
+    print('nc_pw={}'.format(nc_pw))
+    print('prem_pw={}'.format(prem_pw))
     
 
     # Don't automatically exit when finished.
