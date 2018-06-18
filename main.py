@@ -4,22 +4,7 @@
 
 
 if __name__ == '__main__':
-    # Probably grab the file name from the arg.
-    args = sys.argv
-
-    ## Make sure it gets the right info from the args.
-    #for arg in args:
-    #    print(arg)
-
-    # If no args are passed, ask for the file path and name.
-    try:
-        path_and_filename = args[1]
-    except(IndexError):
-        path_and_filename = input('''Please enter the path and filename for \
-the "CB Monthly Activity and Ratios.xml" XML file. ''')
-
-    # DEBUG print
-    print(path_and_filename)
+    
 
     # Parse the xml
     # Get the etree object
@@ -30,7 +15,7 @@ the "CB Monthly Activity and Ratios.xml" XML file. ''')
 
     # CB Monthly Activites and Ratios XML Structure
     # Are these text box name### fields consistent between reports?
-	#	Based on 6/4 & 6/12, they are consistent.
+    #    Based on 6/4 & 6/12, they are consistent.
     # <BusinessActivity2
     #   Textbox172=[Submitted Lives Data]
     #   Textbox173=[Submitted Annual Premium Data]
@@ -55,7 +40,7 @@ the "CB Monthly Activity and Ratios.xml" XML file. ''')
     #   Textbox51=[Placed NC Data, Annualized]
     #   Textbox53=[Placed Annual Prem Data, Annualized]
     #   >
-	
+    
     # Create a dictionary of the Textbox fields as shown above.
     dict_of_fields = get_dict_of_fields()
     
