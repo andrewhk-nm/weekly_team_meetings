@@ -67,14 +67,14 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     new_clients_per_week = None
     premium_per_week = None
     
-    def __init__(self):
+    def __init__(self, xml_file=None):
         # Initialize the exposed attributes/variables
         self.lives_per_week = None
         self.new_clients_per_week = None
         self.premium_per_week = None
         
         # Open the file
-        path_and_filename = self._get_xml_file()
+        path_and_filename = self._get_xml_file(xml_file)
     
         # # DEBUG print the file name and path that was selected.
         # print(path_and_filename)
@@ -140,19 +140,18 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         self.premium_per_week = prem_pw
         
     
-    def _get_xml_file(self):
-        """ If an xml file was passed to the command line, use it.
+    def _get_xml_file(self, xml_file):
+        """ If an xml file was passed to the class upon creation, use it.
         Otherwise prompt the user for one.
         """
-        
-        # Grab the args
-        args = sys.argv
-        
-        # If no args are passed, ask for the file path and name.
-        try:
-            path_and_filename = args[1]
-        except(IndexError):
+                
+        # If no xml file was passed, prompt for the file path and name.
+        if xml_file is not None:
+            path_and_filename = xml_file
+        else:
             path_and_filename = self._prompt_for_xml_file()
+        
+        # TODO: Perhaps Verify the file is the correct type, etc. here.
         
         return path_and_filename
         
