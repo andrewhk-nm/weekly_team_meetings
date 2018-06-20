@@ -1,2 +1,5 @@
 # Do not add private/sensitive info.
 private/
+
+# Do not add compiled python
+__pycache__/
