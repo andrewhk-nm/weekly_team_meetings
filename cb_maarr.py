@@ -1,8 +1,11 @@
 """ CB Monthly Activities and Ratios Report Parser
 """
 
+# TODO: Calculate and return the benchmark numbers
+#		Goal / 52 weeks per year
+
 import xml.etree.ElementTree as etree
-import sys # for argv
+#import sys # for argv
 from nm import per_week
 import tkinter as tk
 from tkinter import filedialog

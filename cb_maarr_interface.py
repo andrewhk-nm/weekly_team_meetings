@@ -19,7 +19,9 @@ if __name__ == "__main__":
     print('NmCbMaarr.new_clients_per_week={}'.format(NmCbMaarr.new_clients_per_week))
     print('NmCbMaarr.premium_per_week={}'.format(NmCbMaarr.premium_per_week))
     
-
+    # Create the string replacement dictionaries
+    # TODO: Calculate the difference numbers too
+    # TODO: Calculate the bench mark numbers
     lives_dict = {'lives_per_week': NmCbMaarr.lives_per_week,
                   'd_lives_last_week': "TODO",
                   'd_lives_from_last_time': "TODO",
@@ -38,6 +40,8 @@ if __name__ == "__main__":
                     'premium_benchmark': "TODO",
                     }                  
     
+    # Create the pretty print strings.
+    # TODO: Use better string commands to format the spacing.
     str_lives = \
     """Lives / week needed: {lives_per_week}    {d_lives_last_week} Lives last week
 {d_lives_from_last_time} from last time
@@ -53,6 +57,7 @@ Benchmark: {nc_benchmark}""".format(**nc_dict)
 {d_premium_from_last_time} from last time
 Benchmark: {premium_benchmark}""".format(**premium_dict)
 
+    # DEBUG Print the pretty printed results
     print(str_lives)
     print(str_nc)
     print(str_premium)
