@@ -143,8 +143,11 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         # print('nc_pw={}'.format(nc_pw))
         # print('prem_pw={}'.format(prem_pw))
         
-        
-        
+        # Calculate the lives, nc, and prem per week benchmarks.
+        self.lives_per_week_benchmark = lives_goal / 52
+        self.new_clients_per_week_benchmark = nc_goal / 52
+        self.premium_per_week_benchmark = prem_goal / 52
+                
         # Set the results to the publically available vars
         self.lives_per_week = lives_pw
         self.new_clients_per_week = nc_pw
