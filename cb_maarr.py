@@ -70,6 +70,12 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     new_clients_per_week = None
     premium_per_week = None
     
+    # Benchmark values
+    # Benchmark = Goal / 52 (weeks per year)
+    lives_per_week_benchmark = None
+    new_clients_per_week_benchmark = None
+    premium_per_week_benchmark = None
+    
     def __init__(self, xml_file=None):
         # Initialize the exposed attributes/variables
         self.lives_per_week = None
@@ -136,6 +142,8 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         # print('lives_pw={}'.format(lives_pw))
         # print('nc_pw={}'.format(nc_pw))
         # print('prem_pw={}'.format(prem_pw))
+        
+        
         
         # Set the results to the publically available vars
         self.lives_per_week = lives_pw
