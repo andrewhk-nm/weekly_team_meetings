@@ -26,19 +26,19 @@ if __name__ == "__main__":
     lives_dict = {'lives_per_week': NmCbMaarr.lives_per_week,
                   'd_lives_last_week': "TODO",
                   'd_lives_from_last_time': "TODO",
-                  'lives_benchmark': "TODO",
+                  'lives_benchmark': NmCbMaarr.lives_per_week_benchmark,
                   }
                   
     nc_dict = {'nc_per_week': NmCbMaarr.new_clients_per_week,
                'd_nc_last_week': "TODO",
                'd_nc_from_last_time': "TODO",
-               'nc_benchmark': "TODO",
+               'nc_benchmark': NmCbMaarr.new_clients_per_week_benchmark,
                }
 
     premium_dict = {'premium_per_week': NmCbMaarr.premium_per_week,
                     'd_premium_last_week': "TODO",
                     'd_premium_from_last_time': "TODO",
-                    'premium_benchmark': "TODO",
+                    'premium_benchmark': NmCbMaarr.premium_per_week_benchmark,
                     }                  
     
     # Create the pretty print strings.
@@ -46,17 +46,17 @@ if __name__ == "__main__":
     str_lives = \
     """Lives / week needed: {lives_per_week}    {d_lives_last_week} Lives last week
 {d_lives_from_last_time} from last time
-Benchmark: {lives_benchmark}""".format(**lives_dict)
+Benchmark: {lives_benchmark:.2f}""".format(**lives_dict)
 
     str_nc = \
     """NC / week needed: {nc_per_week}    {d_nc_last_week} NC last week
 {d_nc_from_last_time} from last time
-Benchmark: {nc_benchmark}""".format(**nc_dict)
+Benchmark: {nc_benchmark:.2f}""".format(**nc_dict)
 
     str_premium = \
     """Premium / week needed: ${premium_per_week}    {d_premium_last_week} Premium last week
 {d_premium_from_last_time} from last time
-Benchmark: ${premium_benchmark}""".format(**premium_dict)
+Benchmark: ${premium_benchmark:.0f}""".format(**premium_dict)
 
     # DEBUG Print the pretty printed results
     print()
