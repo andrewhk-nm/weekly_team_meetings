@@ -78,13 +78,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     
     def __init__(self, xml_file, xml_file_last_week=None):
         # If the xml_file_last_week is None, don't print the comparisons, just the data for this week.
-        
-        
-        # Initialize the exposed attributes/variables
-        self.lives_per_week = None
-        self.new_clients_per_week = None
-        self.premium_per_week = None
-        
+              
         # Open the file
         path_and_filename = self._get_xml_file(xml_file)
     
