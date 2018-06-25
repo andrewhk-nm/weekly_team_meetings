@@ -76,7 +76,10 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     new_clients_per_week_benchmark = None
     premium_per_week_benchmark = None
     
-    def __init__(self, xml_file=None):
+    def __init__(self, xml_file, xml_file_last_week=None):
+        # If the xml_file_last_week is None, don't print the comparisons, just the data for this week.
+        
+        
         # Initialize the exposed attributes/variables
         self.lives_per_week = None
         self.new_clients_per_week = None
