@@ -7,8 +7,6 @@
 import xml.etree.ElementTree as etree
 #import sys # for argv
 from nm import per_week
-import tkinter as tk
-from tkinter import filedialog
 
 class NmCbMonthlyActivitesAndRatiosReportParser():
 
