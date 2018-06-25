@@ -3,6 +3,29 @@
 
 import sys
 import cb_maarr
+import tkinter as tk
+from tkinter import filedialog
+
+def _prompt_for_xml_file():
+    """ Prompt the user for the input file if none was passed.
+    Return a string with the path + filename
+    """
+    
+    # Use tkinter instead of an input
+    #input('''Please enter the path and filename for the "CB Monthly Activity and Ratios.xml" XML file. ''')
+
+    # Create a tkinter object
+    root = tk.Tk()
+    # Withdraw the root window so it doesn't interfere
+    root.withdraw()
+    
+    # TODO: Only look for xml files by default.
+    file_path_name = filedialog.askopenfilename(initialdir='/', 
+                                                title='Select XML File to parse',
+                                                filetypes=(('xml files', '*.xml'), 
+                                                           ('All Files', '*.*')),
+                                                )
+    return file_path_name
 
 if __name__ == "__main__":
     
@@ -10,8 +33,8 @@ if __name__ == "__main__":
     try:
         xml_file = sys.argv[1]
     except(IndexError):
-        # If no argument was passed, default to None
-        xml_file = None
+        # If no argument was passed, prompt the user for one.
+        xml_file = _prompt_for_xml_file()
     
     NmCbMaarr = cb_maarr.NmCbMonthlyActivitesAndRatiosReportParser(xml_file)
     
@@ -35,7 +58,7 @@ if __name__ == "__main__":
                'nc_benchmark': NmCbMaarr.new_clients_per_week_benchmark,
                }
 
-    premium_dict = {'premium_per_week': NmCbMaarr.premium_per_week,
+    premium_dict = {'premium_per_week': round(NmCbMaarr.premium_per_week),
                     'd_premium_last_week': "TODO",
                     'd_premium_from_last_time': "TODO",
                     'premium_benchmark': round(NmCbMaarr.premium_per_week_benchmark),

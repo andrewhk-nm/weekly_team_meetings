@@ -153,39 +153,17 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     
     def _get_xml_file(self, xml_file):
         """ If an xml file was passed to the class upon creation, use it.
-        Otherwise prompt the user for one.
+        This function should perhaps do validation?
         """
-                
-        # If no xml file was passed, prompt for the file path and name.
-        if xml_file is not None:
-            path_and_filename = xml_file
-        else:
-            path_and_filename = self._prompt_for_xml_file()
+
+        # The initial xml file is required now, so this should probably just do validations now...
+        path_and_filename = xml_file
         
         # TODO: Perhaps Verify the file is the correct type, etc. here.
         
         return path_and_filename
         
-    def _prompt_for_xml_file(self):
-        """ Prompt the user for the input file if none was passed.
-        Return a string with the path + filename
-        """
-        
-        # Use tkinter instead of an input
-        #input('''Please enter the path and filename for the "CB Monthly Activity and Ratios.xml" XML file. ''')
 
-        # Create a tkinter object
-        root = tk.Tk()
-        # Withdraw the root window so it doesn't interfere
-        root.withdraw()
-        
-        # TODO: Only look for xml files by default.
-        file_path_name = filedialog.askopenfilename(initialdir='/', 
-                                                    title='Select XML File to parse',
-                                                    filetypes=(('xml files', '*.xml'), 
-                                                               ('All Files', '*.*')),
-                                                    )
-        return file_path_name
         
     def _get_root(self, path_and_filename):
         """ Given the path and filename of an xml doc, return the tree.
