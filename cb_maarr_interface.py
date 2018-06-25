@@ -38,7 +38,7 @@ if __name__ == "__main__":
     premium_dict = {'premium_per_week': NmCbMaarr.premium_per_week,
                     'd_premium_last_week': "TODO",
                     'd_premium_from_last_time': "TODO",
-                    'premium_benchmark': NmCbMaarr.premium_per_week_benchmark,
+                    'premium_benchmark': round(NmCbMaarr.premium_per_week_benchmark),
                     }                  
     
     # Create the pretty print strings.
