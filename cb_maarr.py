@@ -71,11 +71,13 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     new_clients_per_week_benchmark = None
     premium_per_week_benchmark = None
     
-    def __init__(self, xml_file, xml_file_last_week=None):
-        # If the xml_file_last_week is None, don't print the comparisons, just the data for this week.
+    def __init__(self, xml_file, xml_file_hist=None):
+        # If the xml_file_hist is None, don't print the comparisons, just the data for this week.
               
-        # Open the file
-        path_and_filename = self._get_xml_file(xml_file)
+        # validate the current and historical report xml file
+        path_and_filename = self._validate_xml_file(xml_file)
+        path_and_filename_last_week = self._validate_xml_file(xml_file_hist)
+        
     
         # # DEBUG print the file name and path that was selected.
         # print(path_and_filename)
@@ -146,9 +148,8 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         self.premium_per_week = prem_pw
         
     
-    def _get_xml_file(self, xml_file):
-        """ If an xml file was passed to the class upon creation, use it.
-        This function should perhaps do validation?
+    def _validate_xml_file(self, xml_file):
+        """ TODO: This function should validation, on both the current and historical xml files.
         """
 
         # The initial xml file is required now, so this should probably just do validations now...
