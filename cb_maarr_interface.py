@@ -6,7 +6,7 @@ import cb_maarr
 import tkinter as tk
 from tkinter import filedialog
 
-def _prompt_for_xml_file():
+def _prompt_for_xml_file(title):
     """ Prompt the user for the input file if none was passed.
     Return a string with the path + filename
     """
@@ -18,22 +18,38 @@ def _prompt_for_xml_file():
     
     # TODO: Only look for xml files by default.
     file_path_name = filedialog.askopenfilename(initialdir='/', 
-                                                title='Select XML File to parse',
-                                                filetypes=(('xml files', '*.xml'), 
+                                                title=title,
+                                                filetypes=(('Monthly Activities XML file', '*CB Monthly Activity and Ratios*.xml'),
+                                                           ('XML files', '*.xml'), 
                                                            ('All Files', '*.*')),
                                                 )
     return file_path_name
 
 if __name__ == "__main__":
     
-    # Get filename from args, if available
+    # Get filename from args, if available (this week's file)
     try:
         xml_file = sys.argv[1]
     except(IndexError):
         # If no argument was passed, prompt the user for one.
-        xml_file = _prompt_for_xml_file()
+        xml_file = _prompt_for_xml_file("Select XML File to parse (today's report)")
+    finally:
+        # If no file is returned (aka 'Cancel' is pressed) quit immediately with error.
+        if xml_file == '': 
+            sys.exit('No file was selected. Stopping execution.')
+        
+    # Get filename from args, if available (last week's file)
+    try:
+        xml_file = sys.argv[2]
+    except(IndexError):
+        # If no argument was passed, prompt the user for one.
+        xml_file_hist = _prompt_for_xml_file("Select XML File to parse (last week's report) (Press 'Cancel' to skip historical comparisons")
+        # If no file is returned (aka 'Cancel' is pressed) set the file to None.
+        if xml_file_hist == '': xml_file_hist = None
     
-    NmCbMaarr = cb_maarr.NmCbMonthlyActivitesAndRatiosReportParser(xml_file)
+    print('xml_file_hist={}'.format(xml_file_hist))
+    
+    NmCbMaarr = cb_maarr.NmCbMonthlyActivitesAndRatiosReportParser(xml_file, xml_file_hist)
     
     # DEBUG print the results
     print('NmCbMaarr.lives_per_week={}'.format(NmCbMaarr.lives_per_week))
