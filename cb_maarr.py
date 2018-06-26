@@ -1,6 +1,8 @@
 """ CB Monthly Activities and Ratios Report Parser
 """
 
+# Does not check if goals change mid year (or ever)
+
 import xml.etree.ElementTree as etree
 #import sys # for argv
 from nm import per_week
@@ -112,23 +114,23 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         prem_placed_hist = float(maarr_hist.get(self._get_fieldname_from_dict('Placed Annual Premium Total Data')))
 
         
-        # DEBUG print the data I extracted (current)
-        print('extracted data (current)')
-        print(lives_goal)
-        print(lives_placed)
-        print(nc_goal)
-        print(nc_placed)
-        print(prem_goal)
-        print(prem_placed)
+        # # DEBUG print the data I extracted (current)
+        # print('extracted data (current)')
+        # print(lives_goal)
+        # print(lives_placed)
+        # print(nc_goal)
+        # print(nc_placed)
+        # print(prem_goal)
+        # print(prem_placed)
         
-        # DEBUG print the data I extracted (historical)
-        print('extracted data (hist)')
-        print(lives_goal_hist)
-        print(lives_placed_hist)
-        print(nc_goal_hist)
-        print(nc_placed_hist)
-        print(prem_goal_hist)
-        print(prem_placed_hist)
+        # # DEBUG print the data I extracted (historical)
+        # print('extracted data (hist)')
+        # print(lives_goal_hist)
+        # print(lives_placed_hist)
+        # print(nc_goal_hist)
+        # print(nc_placed_hist)
+        # print(prem_goal_hist)
+        # print(prem_placed_hist)
         
         # calculate the lives, nc, and prem needed per week.
         lives_pw = per_week(lives_goal, lives_placed)
