@@ -60,19 +60,19 @@ if __name__ == "__main__":
     # TODO: Calculate the difference numbers too
     # TODO: Calculate the bench mark numbers
     lives_dict = {'lives_per_week': NmCbMaarr.lives_per_week,
-                  'd_lives_last_week': "TODO",
+                  'd_lives_last_week': round(NmCbMaarr.d_lives_last_week, 1),
                   'd_lives_from_last_time': "TODO",
                   'lives_benchmark': NmCbMaarr.lives_per_week_benchmark,
                   }
                   
     nc_dict = {'nc_per_week': NmCbMaarr.new_clients_per_week,
-               'd_nc_last_week': "TODO",
+               'd_nc_last_week': round(NmCbMaarr.d_nc_last_week, 1),
                'd_nc_from_last_time': "TODO",
                'nc_benchmark': NmCbMaarr.new_clients_per_week_benchmark,
                }
 
     premium_dict = {'premium_per_week': round(NmCbMaarr.premium_per_week),
-                    'd_premium_last_week': "TODO",
+                    'd_premium_last_week': round(NmCbMaarr.d_premium_last_week),
                     'd_premium_from_last_time': "TODO",
                     'premium_benchmark': round(NmCbMaarr.premium_per_week_benchmark),
                     }                  

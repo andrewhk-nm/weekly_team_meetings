@@ -72,6 +72,11 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     new_clients_per_week_hist = None
     premium_per_week_hist = None
     
+    # Publicly accessable delta class variables
+    d_lives_last_week = None
+    d_nc_last_week = None
+    d_premium_last_week = None
+    
     # Benchmark values
     # Benchmark = Goal / 52 (weeks per year)
     lives_per_week_benchmark = None
@@ -147,6 +152,11 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
             self.lives_per_week_hist = lives_pw_hist
             self.new_clients_per_week_hist = nc_pw_hist
             self.premium_per_week_hist = prem_pw_hist
+            self.d_lives_last_week = lives_placed - lives_placed_hist
+            self.d_nc_last_week = nc_placed - nc_placed_hist
+            self.d_premium_last_week = prem_placed - prem_placed_hist
+            
+            
         
         
         
