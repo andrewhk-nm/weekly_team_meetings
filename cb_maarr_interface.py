@@ -10,9 +10,6 @@ def _prompt_for_xml_file():
     """ Prompt the user for the input file if none was passed.
     Return a string with the path + filename
     """
-    
-    # Use tkinter instead of an input
-    #input('''Please enter the path and filename for the "CB Monthly Activity and Ratios.xml" XML file. ''')
 
     # Create a tkinter object
     root = tk.Tk()

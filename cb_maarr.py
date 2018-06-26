@@ -1,9 +1,6 @@
 """ CB Monthly Activities and Ratios Report Parser
 """
 
-# TODO: Calculate and return the benchmark numbers
-#		Goal / 52 weeks per year
-
 import xml.etree.ElementTree as etree
 #import sys # for argv
 from nm import per_week
