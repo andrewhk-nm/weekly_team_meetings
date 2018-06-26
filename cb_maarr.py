@@ -71,6 +71,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     new_clients_per_week_benchmark = None
     premium_per_week_benchmark = None
     
+  
     def __init__(self, xml_file, xml_file_hist=None):
         # If the xml_file_hist is None, don't print the comparisons, just the data for this week.
               
@@ -88,42 +89,46 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         # Get the xml namespace from the first tag. Include the braces.
         # As far as I know, the xmlns will be the same for all the xml files.
         xmlns = root.tag.split('}')[0] + '}'
-        # # DEBUG print xmlns
-        # print('xmlns={}'.format(xmlns))
-
-        ## Create a dictionary of the Textbox fields with common names.
-        #dict_of_fields = self._get_dict_of_fields()
-        
-        # # DEBUG Print a single attribute as a test to make sure it grabs the right thing
-        # textbox_test = root.find(xmlns + 'BusinessActivity2').get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data'))
-        # print('textbox_test attrib={}'.format(textbox_test))
-        
-        # What data do I use each week?
-        # lives_goal
-        # lives_placed
-        # nc_goal
-        # nc_placed
-        # prem_goal
-        # prem_placed
-        
+       
         # Monthly Activity & Ratio Report (maarr) info that are needed for my weekly reports
+        # is called "BusinessActivity2". I don't currently use any of the other info.
         maarr = root.find(xmlns + 'BusinessActivity2')
+        maarr_hist = root_hist.find(xmlns + 'BusinessActivity2')
             
-        # Get the lives goal
+        # Get the current lives goal and data
         lives_goal = float(maarr.get(self._get_fieldname_from_dict('Placed Lives Goal Data')))
         lives_placed = float(maarr.get(self._get_fieldname_from_dict('Placed Lives Total Data')))
         nc_goal = float(maarr.get(self._get_fieldname_from_dict('Placed NC Goal Data')))
         nc_placed = float(maarr.get(self._get_fieldname_from_dict('Placed NC Total Data')))
         prem_goal = float(maarr.get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data')))
         prem_placed = float(maarr.get(self._get_fieldname_from_dict('Placed Annual Premium Total Data')))
+
+        # Get the historical lives goal and data
+        lives_goal_hist = float(maarr_hist.get(self._get_fieldname_from_dict('Placed Lives Goal Data')))
+        lives_placed_hist = float(maarr_hist.get(self._get_fieldname_from_dict('Placed Lives Total Data')))
+        nc_goal_hist = float(maarr_hist.get(self._get_fieldname_from_dict('Placed NC Goal Data')))
+        nc_placed_hist = float(maarr_hist.get(self._get_fieldname_from_dict('Placed NC Total Data')))
+        prem_goal_hist = float(maarr_hist.get(self._get_fieldname_from_dict('Placed Annual Premium Goal Data')))
+        prem_placed_hist = float(maarr_hist.get(self._get_fieldname_from_dict('Placed Annual Premium Total Data')))
+
         
-        # # print the data I extracted
-        # print(lives_goal)
-        # print(lives_placed)
-        # print(nc_goal)
-        # print(nc_placed)
-        # print(prem_goal)
-        # print(prem_placed)
+        # DEBUG print the data I extracted (current)
+        print('extracted data (current)')
+        print(lives_goal)
+        print(lives_placed)
+        print(nc_goal)
+        print(nc_placed)
+        print(prem_goal)
+        print(prem_placed)
+        
+        # DEBUG print the data I extracted (historical)
+        print('extracted data (hist)')
+        print(lives_goal_hist)
+        print(lives_placed_hist)
+        print(nc_goal_hist)
+        print(nc_placed_hist)
+        print(prem_goal_hist)
+        print(prem_placed_hist)
         
         # calculate the lives, nc, and prem needed per week.
         lives_pw = per_week(lives_goal, lives_placed)
