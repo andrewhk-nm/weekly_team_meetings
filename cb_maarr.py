@@ -76,19 +76,17 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
               
         # validate the current and historical report xml file
         path_and_filename = self._validate_xml_file(xml_file)
-        path_and_filename_last_week = self._validate_xml_file(xml_file_hist)
-        
-    
-        # # DEBUG print the file name and path that was selected.
-        # print(path_and_filename)
-        
+        path_and_filename_hist = self._validate_xml_file(xml_file_hist)
+               
         # Parse the xml
         # Get the etree object
         root = self._get_root(path_and_filename)
-        # # DEBUG Print root tree
-        # print('root={}'.format(root))
+        root_hist = self._get_root(path_and_filename_hist)
+        # DEBUG Print root tree for hist xml file
+        print('root_hist={}'.format(root_hist))
         
-        # Get the xml namespace from vthe first tag. Include the braces.
+        # Get the xml namespace from the first tag. Include the braces.
+        # As far as I know, the xmlns will be the same for all the xml files.
         xmlns = root.tag.split('}')[0] + '}'
         # # DEBUG print xmlns
         # print('xmlns={}'.format(xmlns))
