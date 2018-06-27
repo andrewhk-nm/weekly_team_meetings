@@ -3,6 +3,7 @@
 
 # TODO: Output as HTML with colors?
 #       Output the chart as well?
+# TODO: Refactor __name__ == "__main__"!
 
 import sys
 import cb_maarr

@@ -2,6 +2,7 @@
 """
 
 # Does not check if goals change mid year (or ever)
+# Refactor "__init__"!
 
 import xml.etree.ElementTree as etree
 #import sys # for argv
