@@ -80,17 +80,17 @@ if __name__ == "__main__":
     # Create the pretty print strings.
     # TODO: Use better string commands to format the spacing.
     str_lives = \
-    """Lives / week needed: {lives_per_week}    {d_lives_last_week} Lives last week
+    """Lives / week needed: {lives_per_week}    {d_lives_last_week:+} Lives last week
 {d_lives_from_last_time} from last time
 Benchmark: {lives_benchmark:.2f} / week""".format(**lives_dict)
 
     str_nc = \
-    """NC / week needed: {nc_per_week}    {d_nc_last_week} NC last week
+    """NC / week needed: {nc_per_week}    {d_nc_last_week:+} NC last week
 {d_nc_from_last_time} from last time
 Benchmark: {nc_benchmark:.2f} / week""".format(**nc_dict)
 
     str_premium = \
-    """Premium / week needed: ${premium_per_week}    {d_premium_last_week} Premium last week
+    """Premium / week needed: ${premium_per_week}    {d_premium_last_week:+} Premium last week
 {d_premium_from_last_time} from last time
 Benchmark: ${premium_benchmark:.0f} / week""".format(**premium_dict)
 
