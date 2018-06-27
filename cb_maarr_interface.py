@@ -69,25 +69,38 @@ if __name__ == "__main__":
     # print('NmCbMaarr.premium_per_week={}'.format(NmCbMaarr.premium_per_week))
     
     # Create the string replacement dictionaries
-    # TODO: Calculate the difference numbers too
-    # TODO: Calculate the bench mark numbers
-    lives_dict = {'lives_per_week': round(NmCbMaarr.lives_per_week, 2),
-                  'd_lives_last_week': round(NmCbMaarr.d_lives_last_week, 1),
-                  'd_lives_from_last_time': round(NmCbMaarr.d_lives_per_week, 2),
-                  'lives_benchmark': NmCbMaarr.lives_per_week_benchmark,
-                  }
-                  
-    nc_dict = {'nc_per_week': round(NmCbMaarr.new_clients_per_week, 2),
-               'd_nc_last_week': round(NmCbMaarr.d_new_clients_last_week, 1),
-               'd_nc_from_last_time': round(NmCbMaarr.d_new_clients_per_week, 2),
-               'nc_benchmark': NmCbMaarr.new_clients_per_week_benchmark,
-               }
+    if xml_file_hist is None:
+        # No historical file selected, there will be no deltas.
+        lives_dict = {'lives_per_week': round(NmCbMaarr.lives_per_week, 2),
+                      'lives_benchmark': NmCbMaarr.lives_per_week_benchmark,
+                      }
+                      
+        nc_dict = {'nc_per_week': round(NmCbMaarr.new_clients_per_week, 2),
+                   'nc_benchmark': NmCbMaarr.new_clients_per_week_benchmark,
+                   }
 
-    premium_dict = {'premium_per_week': round(NmCbMaarr.premium_per_week),
-                    'd_premium_last_week': round(NmCbMaarr.d_premium_last_week),
-                    'd_premium_from_last_time': round(NmCbMaarr.d_premium_per_week, 2),
-                    'premium_benchmark': round(NmCbMaarr.premium_per_week_benchmark),
-                    }                  
+        premium_dict = {'premium_per_week': round(NmCbMaarr.premium_per_week),
+                        'premium_benchmark': round(NmCbMaarr.premium_per_week_benchmark),
+                        }                  
+    else:        
+        # Historical file was selected, get the deltas, too.            
+        lives_dict = {'lives_per_week': round(NmCbMaarr.lives_per_week, 2),
+                      'd_lives_last_week': round(NmCbMaarr.d_lives_last_week, 1),
+                      'd_lives_from_last_time': round(NmCbMaarr.d_lives_per_week, 2),
+                      'lives_benchmark': NmCbMaarr.lives_per_week_benchmark,
+                      }
+                      
+        nc_dict = {'nc_per_week': round(NmCbMaarr.new_clients_per_week, 2),
+                   'd_nc_last_week': round(NmCbMaarr.d_new_clients_last_week, 1),
+                   'd_nc_from_last_time': round(NmCbMaarr.d_new_clients_per_week, 2),
+                   'nc_benchmark': NmCbMaarr.new_clients_per_week_benchmark,
+                   }
+
+        premium_dict = {'premium_per_week': round(NmCbMaarr.premium_per_week),
+                        'd_premium_last_week': round(NmCbMaarr.d_premium_last_week),
+                        'd_premium_from_last_time': round(NmCbMaarr.d_premium_per_week, 2),
+                        'premium_benchmark': round(NmCbMaarr.premium_per_week_benchmark),
+                        }                  
     
     # Create the pretty print strings.
     # TODO: Use better string commands to format the spacing.
