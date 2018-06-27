@@ -99,8 +99,6 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         # Get the etree object
         root = self._get_root(path_and_filename)
         if xml_file_hist is not None: root_hist = self._get_root(path_and_filename_hist)
-        # DEBUG Print root tree for hist xml file
-        print('root_hist={}'.format(root_hist))
         
         # Get the xml namespace from the first tag. Include the braces.
         # As far as I know, the xmlns will be the same for all the xml files.

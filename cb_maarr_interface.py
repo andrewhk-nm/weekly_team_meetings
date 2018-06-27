@@ -50,8 +50,6 @@ if __name__ == "__main__":
         # If no file is returned (aka 'Cancel' is pressed) set the file to None.
         if xml_file_hist == '': xml_file_hist = None
     
-    print('xml_file_hist={}'.format(xml_file_hist))
-    
     NmCbMaarr = cb_maarr.NmCbMonthlyActivitesAndRatiosReportParser(xml_file, xml_file_hist)
     
     # # DEBUG print the results
@@ -97,7 +95,7 @@ Benchmark: {nc_benchmark:.2f} / week""".format(**nc_dict)
 {d_premium_from_last_time:+} from last time
 Benchmark: ${premium_benchmark:.0f} / week""".format(**premium_dict)
 
-    # DEBUG Print the pretty printed results
+    # Print the pretty printed results
     print()
     print(str_lives)
     print()
