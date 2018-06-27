@@ -1,6 +1,9 @@
 """ The interface portion of the CB Monthly Activities and Ratios Report module.
 """
 
+# TODO: Output as HTML with colors?
+#       Output the chart as well?
+
 import sys
 import cb_maarr
 import tkinter as tk
