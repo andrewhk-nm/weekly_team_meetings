@@ -67,15 +67,19 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     new_clients_per_week = None
     premium_per_week = None
     
-    # Publicly accessable class variables that hold the results (historical)
-    lives_per_week_hist = None
-    new_clients_per_week_hist = None
-    premium_per_week_hist = None
+    # # Publicly accessable class variables that hold the results (historical)
+    # lives_per_week_hist = None
+    # new_clients_per_week_hist = None
+    # premium_per_week_hist = None
     
     # Publicly accessable delta class variables
     d_lives_last_week = None
     d_nc_last_week = None
     d_premium_last_week = None
+    d_lives_per_week = None
+    d_new_clients_per_week = None
+    d_premium_per_week = None
+    
     
     # Benchmark values
     # Benchmark = Goal / 52 (weeks per year)
@@ -149,12 +153,18 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
         
         # Set the results to the publically available vars (historical)
         if xml_file_hist is not None: 
-            self.lives_per_week_hist = lives_pw_hist
-            self.new_clients_per_week_hist = nc_pw_hist
-            self.premium_per_week_hist = prem_pw_hist
+            # The actual historical rate doesn't need to be available at the class level.
+            # self.lives_pw_hist = lives_pw_hist
+            # self.new_clients_per_week_hist = nc_pw_hist
+            # self.premium_per_week_hist = prem_pw_hist
+            # Delta of lives/nc/prem added since the last report
             self.d_lives_last_week = lives_placed - lives_placed_hist
             self.d_nc_last_week = nc_placed - nc_placed_hist
             self.d_premium_last_week = prem_placed - prem_placed_hist
+            # Delta of lives/nc/prem rate change since the last report
+            self.d_lives_per_week = lives_pw - lives_pw_hist
+            self.d_new_clients_per_week = nc_pw - nc_pw_hist
+            self.d_premium_per_week = prem_pw - prem_pw_hist
             
             
         
