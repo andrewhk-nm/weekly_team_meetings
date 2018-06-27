@@ -74,7 +74,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
     
     # Publicly accessable delta class variables
     d_lives_last_week = None
-    d_nc_last_week = None
+    d_new_clients_last_week = None
     d_premium_last_week = None
     d_lives_per_week = None
     d_new_clients_per_week = None
@@ -159,7 +159,7 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
             # self.premium_per_week_hist = prem_pw_hist
             # Delta of lives/nc/prem added since the last report
             self.d_lives_last_week = lives_placed - lives_placed_hist
-            self.d_nc_last_week = nc_placed - nc_placed_hist
+            self.d_new_clients_last_week = nc_placed - nc_placed_hist
             self.d_premium_last_week = prem_placed - prem_placed_hist
             # Delta of lives/nc/prem rate change since the last report
             self.d_lives_per_week = lives_pw - lives_pw_hist
