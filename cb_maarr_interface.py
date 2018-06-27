@@ -33,22 +33,33 @@ if __name__ == "__main__":
     # Get filename from args, if available (this week's file)
     try:
         xml_file = sys.argv[1]
+        
     except(IndexError):
         # If no argument was passed, prompt the user for one.
+        print("Please use the File Dialog box to select the current xml report data file.")
         xml_file = _prompt_for_xml_file("Select XML File to parse (today's report)")
     finally:
         # If no file is returned (aka 'Cancel' is pressed) quit immediately with error.
         if xml_file == '': 
             sys.exit('No file was selected. Stopping execution.')
+        else:
+            print("Using '{}' as the current xml report data file.".format(xml_file))
+            
         
     # Get filename from args, if available (last week's file)
     try:
         xml_file = sys.argv[2]
     except(IndexError):
         # If no argument was passed, prompt the user for one.
+        print("\nPlease use the File Dialog box to select the historical xml report data file for delta comparisons.\nPress cancel to skip comparisons.")
         xml_file_hist = _prompt_for_xml_file("Select XML File to parse (last week's report) (Press 'Cancel' to skip historical comparisons)")
+    finally:
         # If no file is returned (aka 'Cancel' is pressed) set the file to None.
-        if xml_file_hist == '': xml_file_hist = None
+        if xml_file_hist == '':
+            xml_file_hist = None
+            print("No historical xml report data file selected. Skipping historical comparisons.")
+        else:
+            print("Using '{}' as the historical xml report data file for comparison.".format(xml_file_hist))
     
     NmCbMaarr = cb_maarr.NmCbMonthlyActivitesAndRatiosReportParser(xml_file, xml_file_hist)
     
@@ -96,7 +107,7 @@ Benchmark: {nc_benchmark:.2f} / week""".format(**nc_dict)
 Benchmark: ${premium_benchmark:.0f} / week""".format(**premium_dict)
 
     # Print the pretty printed results
-    print()
+    print('\nResults:\n')
     print(str_lives)
     print()
     print(str_nc)
