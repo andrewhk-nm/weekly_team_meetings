@@ -50,7 +50,9 @@ def main()
             sys.exit('No file was selected. Stopping execution.')
         else:
             print("Using '{}' as the current xml report data file.".format(xml_file))
-            
+    
+    # TODO: Check arguement for "--help", "-h" or "-?" etc, and respond appropriately.
+    
         
     # Get filename from args, if available (last week's file)
     try:
@@ -67,16 +69,13 @@ def main()
         else:
             print("Using '{}' as the historical xml report data file for comparison.".format(xml_file_hist))
     
+    # Instantiate the class
     NmCbMaarr = cb_maarr.NmCbMonthlyActivitesAndRatiosReportParser(xml_file, xml_file_hist)
-    
-    # # DEBUG print the results
-    # print('NmCbMaarr.lives_per_week={}'.format(NmCbMaarr.lives_per_week))
-    # print('NmCbMaarr.new_clients_per_week={}'.format(NmCbMaarr.new_clients_per_week))
-    # print('NmCbMaarr.premium_per_week={}'.format(NmCbMaarr.premium_per_week))
-    
-    # Create the string replacement dictionaries
+       
     if xml_file_hist is None:
         # No historical file selected, there will be no deltas.
+        
+        # Create the string replacement dictionaries
         lives_dict = {'lives_per_week': round(NmCbMaarr.lives_per_week, 2),
                       'lives_benchmark': NmCbMaarr.lives_per_week_benchmark,
                       }
@@ -87,7 +86,21 @@ def main()
 
         premium_dict = {'premium_per_week': round(NmCbMaarr.premium_per_week),
                         'premium_benchmark': round(NmCbMaarr.premium_per_week_benchmark),
-                        }                  
+                        }
+                        
+        # Create the pretty print strings.
+        # TODO: Use better string commands to format the spacing.
+        str_lives = \
+        """Lives / week needed: {lives_per_week}
+Benchmark: {lives_benchmark:.2f} / week""".format(**lives_dict)
+
+        str_nc = \
+        """NC / week needed: {nc_per_week}
+Benchmark: {nc_benchmark:.2f} / week""".format(**nc_dict)
+
+        str_premium = \
+        """Premium / week needed: ${premium_per_week}
+Benchmark: ${premium_benchmark:.0f} / week""".format(**premium_dict)
     else:        
         # Historical file was selected, get the deltas, too.            
         lives_dict = {'lives_per_week': round(NmCbMaarr.lives_per_week, 2),
@@ -106,26 +119,10 @@ def main()
                         'd_premium_last_week': round(NmCbMaarr.d_premium_last_week),
                         'd_premium_from_last_time': round(NmCbMaarr.d_premium_per_week),
                         'premium_benchmark': round(NmCbMaarr.premium_per_week_benchmark),
-                        }                  
-    
-    # Create the pretty print strings.
-    # TODO: Use better string commands to format the spacing.
-    if xml_file_hist is None:
-        # No historical file selected, don't print the delta fields.       
-        str_lives = \
-        """Lives / week needed: {lives_per_week}
-Benchmark: {lives_benchmark:.2f} / week""".format(**lives_dict)
-
-        str_nc = \
-        """NC / week needed: {nc_per_week}
-Benchmark: {nc_benchmark:.2f} / week""".format(**nc_dict)
-
-        str_premium = \
-        """Premium / week needed: ${premium_per_week}
-Benchmark: ${premium_benchmark:.0f} / week""".format(**premium_dict)
-        
-    else:
-        # Historical file was selected, print the deltas, too.    
+                        }
+                        
+        # Create the pretty print strings.
+        # TODO: Use better string commands to format the spacing.
         str_lives = \
         """Lives / week needed: {lives_per_week}    {d_lives_last_week:+} Lives last week
 {d_lives_from_last_time:+} from last time
