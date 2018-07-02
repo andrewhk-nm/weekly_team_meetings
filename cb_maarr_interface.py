@@ -5,6 +5,7 @@
 #       Output the chart as well?
 # TODO: Refactor __name__ == "__main__"!
 # TODO: Respond appropriately when "--help" or "-h" is passed as an argument.
+# TODO: Create tests before more refactoring
 
 import sys
 import cb_maarr

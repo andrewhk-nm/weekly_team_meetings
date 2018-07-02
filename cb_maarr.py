@@ -1,8 +1,9 @@
 """ CB Monthly Activities and Ratios Report Parser
 """
 
-# Does not check if goals change mid year (or ever)
-# Refactor "__init__"!
+# TODO: Does not check if goals change mid year (or ever)
+# TODO: Refactor "__init__"!
+# TODO: Create tests before refactoring
 
 import xml.etree.ElementTree as etree
 #import sys # for argv
@@ -244,6 +245,8 @@ class NmCbMonthlyActivitesAndRatiosReportParser():
 
                 
 if __name__ == "__main__":
+    """ Only executes if module invoked directly.
+    """
     # create a NmCbMonthlyActivitesAndRatiosReportParser object
     NmCbMaarr = NmCbMonthlyActivitesAndRatiosReportParser()
     
