@@ -4,6 +4,7 @@
 # TODO: Output as HTML with colors?
 #       Output the chart as well?
 # TODO: Refactor __name__ == "__main__"!
+# TODO: Respond appropriately when "--help" or "-h" is passed as an argument.
 
 import sys
 import cb_maarr
@@ -29,7 +30,11 @@ def _prompt_for_xml_file(title):
                                                 )
     return file_path_name
 
-if __name__ == "__main__":
+def main()
+    """ The main entry point for the Monthly Activities and Ratios Report interface module.
+    This module instantiates the report calculator object, and formats the results in 
+    a manner that can be easily inserted into my weekly report.
+    """
     
     # Get filename from args, if available (this week's file)
     try:
@@ -144,6 +149,13 @@ Benchmark: ${premium_benchmark:.0f} / week""".format(**premium_dict)
     print()
     print(str_premium)
     print()
+    
+    
+    
+if __name__ == "__main__":
+
+    # Launch the main function
+    main()
     
     # Don't automatically exit
     input('Press <ENTER> to quit.')
