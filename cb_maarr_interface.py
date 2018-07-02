@@ -30,7 +30,7 @@ def _prompt_for_xml_file(title):
                                                 )
     return file_path_name
 
-def main()
+def main():
     """ The main entry point for the Monthly Activities and Ratios Report interface module.
     This module instantiates the report calculator object, and formats the results in 
     a manner that can be easily inserted into my weekly report.
